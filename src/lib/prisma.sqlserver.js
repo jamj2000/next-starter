@@ -1,0 +1,22 @@
+import { PrismaClient } from '@/generated/prisma/client';
+import { PrismaMssql } from '@prisma/adapter-mssql';
+
+const adapter = new PrismaMssql({
+    server: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT ?? 1433),
+    database: process.env.DB_NAME,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    options: {
+        encrypt: true,
+        trustServerCertificate: process.env.NODE_ENV !== 'production',
+    },
+});
+
+const prisma = globalThis.prisma ?? new PrismaClient({ adapter });
+
+if (process.env.NODE_ENV !== 'production') {
+    globalThis.prisma = prisma;
+}
+
+export default prisma;
