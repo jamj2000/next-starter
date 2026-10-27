@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     <html
       lang="es"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scrollbar-gutter-stable`}
     >
       <body className="container mx-auto py-20 min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme>
